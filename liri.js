@@ -56,18 +56,17 @@ let rottenTomatoes = (rating)=>{
 }
 
 let omdb = (movie)=>{
-  request("http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy", function(error, response, body) {
+  request('http://www.omdbapi.com/?t=' + movie + "&y=&plot=short&apikey=trilogy", function(error, response, body) {
     if (!error && response.statusCode === 200) {
-      console.log(body);
       // console.log(body);
-      // console.log("Title: " + JSON.parse(body).Title);
-      // console.log("Released: " + JSON.parse(body).Released);
-      // console.log("IMDB rating: " + JSON.parse(body).imdbRating);
-      // // console.log("Rotten Tomatoes Rating: " + body.Ratings.map(rottenTomatoes));
-      // console.log("Produced: " + JSON.parse(body).Country);
-      // console.log("Language: " + JSON.parse(body).Language);
-      // console.log("Plot: " + JSON.parse(body).Plot);
-      // console.log("Actors: " + JSON.parse(body).Actors);
+      console.log("Title: " + JSON.parse(body).Title);
+      console.log("Released: " + JSON.parse(body).Released);
+      console.log("IMDB rating: " + JSON.parse(body).imdbRating);
+      // console.log("Rotten Tomatoes Rating: " + body.Ratings.map(rottenTomatoes));
+      console.log("Produced: " + JSON.parse(body).Country);
+      console.log("Language: " + JSON.parse(body).Language);
+      console.log("Plot: " + JSON.parse(body).Plot);
+      console.log("Actors: " + JSON.parse(body).Actors);
     }
   });
 }
