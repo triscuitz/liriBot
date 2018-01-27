@@ -51,22 +51,19 @@ let spotifyIt = (song)=> {
 }
 
 //Request stuff
-let rottenTomatoes = (rating)=>{
-  return Ratings.Rotten_Tomatoes.value
-}
-
 let omdb = (movie)=>{
   request('http://www.omdbapi.com/?t=' + movie + "&y=&plot=short&apikey=trilogy", function(error, response, body) {
     if (!error && response.statusCode === 200) {
-      // console.log(body);
-      console.log("Title: " + JSON.parse(body).Title);
-      console.log("Released: " + JSON.parse(body).Released);
-      console.log("IMDB rating: " + JSON.parse(body).imdbRating);
-      // console.log("Rotten Tomatoes Rating: " + body.Ratings.map(rottenTomatoes));
-      console.log("Produced: " + JSON.parse(body).Country);
-      console.log("Language: " + JSON.parse(body).Language);
-      console.log("Plot: " + JSON.parse(body).Plot);
-      console.log("Actors: " + JSON.parse(body).Actors);
+      let bod = JSON.parse(body);
+      console.log(body);
+      console.log("Title: " + bod.Title);
+      console.log("Released: " + bod.Released);
+      console.log("IMDB rating: " + bod.imdbRating);
+      console.log("Rotten Tomatoes Rating: " + bod.Ratings[1].Value);
+      console.log("Produced: " + bod.Country);
+      console.log("Language: " + bod.Language);
+      console.log("Plot: " + bod.Plot);
+      console.log("Actors: " + bod.Actors);
     }
   });
 }
@@ -103,5 +100,15 @@ let command = (caseData, functionData)=> {
 let run = (argOne, argTwo)=> {
   command(argOne, argTwo);
 };
+
+//bonus stuffz!
+// fs.appendFile('log.txt', logTxt, (err))=>{
+//   if (err) {
+//     console.log(err);
+//   }
+//   else {
+//     command(argOne, argTwo);
+//   }
+// });
 
 run(process.argv[2], process.argv[3]);
